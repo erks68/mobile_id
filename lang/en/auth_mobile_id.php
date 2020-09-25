@@ -22,3 +22,4 @@ $string['try_again'] = 'Begin login with Mobile-ID again';
 $string['no_user_data'] = 'Login with Mobile-ID is not possible, because user has no id-code or mobile phone number in Moodle user profile.';
 $string['multiple_numbers'] = 'Inserted phone number is connected to multiple Moodle users. Please login using Your Moodle username or contact Moodle support.';
 $string['mobile_display_text'] = 'Log into Moodle';
+$string['no_mobile'] = 'Login with Mobile-ID is not possible, because user has no mobile phone number in Moodle user profile.';

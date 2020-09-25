@@ -54,6 +54,14 @@ class auth_plugin_mobile_id extends auth_plugin_base
             'idnumber' => $nationalIdentityNumber);
         $userinfo = $DB->get_record('user', $conditions, 'id,phone2,lang,idnumber');
 
+        if(!$userinfo){
+            redirect('/auth/mobile_id/login.php?nouserdata=1');
+        }
+
+        if(empty($userinfo->phone2)){
+            redirect('/auth/mobile_id/login.php?nomobile=1');
+        }
+
         $phoneNumber = null;
         if (!empty($userinfo->phone2)) {
             $phoneNumber = auth_mobile_id_form::phone_without_code($userinfo->phone2); // In case the code is already there

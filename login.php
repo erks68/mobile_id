@@ -30,6 +30,7 @@ $timeout = optional_param('timeout', false, PARAM_BOOL);
 $error = optional_param('error', false, PARAM_BOOL);
 $nouserdata = optional_param('nouserdata', false, PARAM_BOOL);
 $multiplenumbers = optional_param('multiplenumbers', false, PARAM_BOOL);
+$nomobile = optional_param('nomobile', false, PARAM_BOOL);
 
 $vars = new stdClass();
 $vars->loginsessionid = $loginsessionid;
@@ -47,7 +48,7 @@ if ($USER->id && $USER->id != 1) { // User already logged in
 } else if ($loginsessionid) { // Mobile-ID autentication successful
     $login->login($loginsessionid);
 
-} else if ($error or $timeout or $nouserdata or $multiplenumbers) {
+} else if ($error or $timeout or $nouserdata or $multiplenumbers or $nomobile) {
     $step = MOBILE_ID_ERROR;
 
 } else if ($waitsessionid) { // After no Javascript status check
@@ -101,6 +102,8 @@ switch ($step) {
             echo $OUTPUT->box(get_string('no_user_data', 'auth_mobile_id'));
         else if ($multiplenumbers)
             echo $OUTPUT->box(get_string('multiple_numbers', 'auth_mobile_id'));
+        else if($nomobile)
+            echo $OUTPUT->box(get_string('no_mobile', 'auth_mobile_id'));
 
         echo "<div><a href=\"/auth/mobile_id/login.php\">"
             . get_string('try_again', 'auth_mobile_id') . "</a></div>";
